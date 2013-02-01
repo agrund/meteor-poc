@@ -9,9 +9,30 @@
 <template name="mainPage">
 	<div class="container">
 		<h3>Blog name</h3>
-		{{#each allArticles}}}
-			<h4>{{title}}</h4>
-			{{content}}
-		{{/each}}
+		<!-- This can be done dynamical, but for now let's do it so -->
+		{{#if currentPageIs 'homePage'}}
+			{{> homePage}}
+		{{/if}}
+
+		{{#if currentPageIs 'adminPage'}}
+			{{> adminPage}}
+		{{/if}}
 	</div>
+</template>
+
+<template name="homePage">
+	<a href="/admin">Write article</a>
+	{{#each allArticles}}}
+		<h4>{{title}}</h4>
+		{{content}}
+	{{/each}}
+</template>
+
+<template name="adminPage">
+	<h4>Create your article</h4>
+	<input type="text" class="title" />
+	<br />
+	<textarea class="content textAreaArticle" rows="10" cols="50"/>
+	<br />
+	<a href="#" class="save btn">Publish your article</a>	
 </template>
