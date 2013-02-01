@@ -1,0 +1,17 @@
+<head>
+    <title>hackathon-app</title>
+</head>
+
+<body>
+	{{> mainPage}}
+</body>
+
+<template name="mainPage">
+	<div class="container">
+		<h3>Blog name</h3>
+		{{#each allArticles}}}
+			<h4>{{title}}</h4>
+			{{content}}
+		{{/each}}
+	</div>
+</template>
