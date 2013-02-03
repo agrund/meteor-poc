@@ -59,5 +59,18 @@ Template.adminPage.events({
 		
 		template.find('.title').value = "";
 		template.find('.content').value = "";
+	},
+
+	'click .logout': function(event, template){
+		Meteor.logout();
+	},
+
+	'click .login': function(event, template){
+		var user = template.find('.loginName').value;
+		var password = template.find('.password').value;
+		Meteor.loginWithPassword(user, password)
 	}
+
+
+
 });

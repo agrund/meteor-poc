@@ -28,11 +28,23 @@
 	{{/each}}
 </template>
 
+
+
 <template name="adminPage">
-	<h4>Create your article</h4>
-	<input type="text" class="title" />
-	<br />
-	<textarea class="content textAreaArticle" rows="10" cols="50"/>
-	<br />
-	<a href="#" class="save btn">Publish your article</a>	
+	{{#if currentUser}}
+		<a href="#" class="logout btn">Logout</a>
+		<h4>Create your article</h4>
+		<input type="text" class="title" />
+		<br />
+		<textarea class="content textAreaArticle" rows="10" cols="50"/>
+		<br />
+		<a href="#" class="save btn">Publish your article</a>	
+	{{else}}
+		<input type="text" class="loginName" placeholder="Account name" />
+		<br />
+		<input type="password" class="password" placeholder="Your password" />
+		<br />
+		<a href="#" class="login btn">Loging</a>
+		P.S. use admin / admin
+	{{/if}}
 </template>
