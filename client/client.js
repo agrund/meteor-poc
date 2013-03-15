@@ -20,7 +20,7 @@ var Router = Backbone.Router.extend({
 	}
 });
 
-var app = new Router;
+var app = new Router();
 
 Meteor.startup(function() {
 	Backbone.history.start({
@@ -34,12 +34,11 @@ Template.homePage.allArticles = function() {
 	return Articles.find().fetch();
 };
 
-Template.mainPage.currentPage = function() {
-	return Session.get('currentPage');
-}
-
-Template.mainPage.currentPageIs = function(page) {
-	return Session.get('currentPage') === page;
+Template.mainPage.currentPageContent = function() {
+	var pageId = Session.get('currentPage');
+	var template = Template[pageId];
+	if (!template) return ""; //This page doesn't exist.
+	return template();
 };
 
 
@@ -56,7 +55,7 @@ Template.adminPage.events({
 				content: content
 			});
 		}
-		
+
 		template.find('.title').value = "";
 		template.find('.content').value = "";
 	},
@@ -68,7 +67,7 @@ Template.adminPage.events({
 	'click .login': function(event, template){
 		var user = template.find('.loginName').value;
 		var password = template.find('.password').value;
-		Meteor.loginWithPassword(user, password)
+		Meteor.loginWithPassword(user, password);
 	}
 
 
